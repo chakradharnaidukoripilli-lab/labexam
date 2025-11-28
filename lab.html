@@ -1,0 +1,83 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Student Birthday Reminder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #2d3436;
+        }
+
+        .notification {
+            padding: 15px;
+            background: #74b9ff;
+            color: #fff;
+            border-radius: 8px;
+            width: 300px;
+            display: none;
+            margin-top: 20px;
+        }
+
+        .birthday-list {
+            margin-top: 20px;
+        }
+
+        .birthday-item {
+            padding: 10px;
+            background: #dfe6e9;
+            margin: 5px 0;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Student Birthday Reminder</h2>
+
+<div id="notification" class="notification"></div>
+
+<div class="birthday-list">
+    <h3>Student Birthdays</h3>
+    <div class="birthday-item">Asha – 2025-02-14</div>
+    <div class="birthday-item">Rohan – 2025-11-28</div>
+    <div class="birthday-item">Meena – 2025-12-04</div>
+</div>
+
+<script>
+    const students = [
+        { name: "Asha", birthday: "02-14" },
+        { name: "Rohan", birthday: "11-28" },
+        { name: "Meena", birthday: "12-04" }
+    ];
+
+    function checkBirthday() {
+        const today = new Date();
+        const month = ("0" + (today.getMonth() + 1)).slice(-2);
+        const day = ("0" + today.getDate()).slice(-2);
+        const todayStr = month + "-" + day;
+
+        let birthdayMsg = "";
+
+        students.forEach(student => {
+            if (student.birthday === todayStr) {
+                birthdayMsg += "It is " + student.name + "'s Birthday Today!<br>";
+            }
+        });
+
+        if (birthdayMsg !== "") {
+            const notification = document.getElementById("notification");
+            notification.innerHTML = birthdayMsg;
+            notification.style.display = "block";
+        }
+    }
+
+    window.onload = checkBirthday;
+</script>
+
+</body>
+</html>
